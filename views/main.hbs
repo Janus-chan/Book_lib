@@ -1,0 +1,48 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Janu crud ops</title>
+  </head>
+  <body>
+    <h1>hello world</h1>
+
+    <h2>{{message}}</h2>
+
+    <br />
+    {{#if edit_id}}
+      <h2>Edit</h2>
+      <form method="post" action="/update_book/{{edit_id}}">
+        <label for="">Title</label>
+        <input type="text" name="Title" id="" value="{{edit_book.Title}}" />
+        <label for="">Author</label>
+        <input type="text" name="Author" id="" value="{{edit_book.Author}}" />
+        <button type="submit">submit</button>
+      </form>
+
+    {{else}}
+      <h2>Create</h2>
+      <form method="post" action="/store_book">
+        <label for="">Title</label>
+        <input type="text" name="Title" id="" />
+        <label for="">Author</label>
+        <input type="text" name="Author" id="" />
+        <button type="submit">submit</button>
+      </form>
+
+    {{/if}}
+
+    <br />
+    <ul>
+
+      {{#each employees}}
+        <li>{{this.title}}
+          -
+          {{this.author}}
+          <a href="/?edit_id={{this._id}}">Edit</a>
+           <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete?')">Delete</a>
+        </li>
+      {{/each}}
+    </ul>
+  </body>
+</html>
